@@ -55,7 +55,7 @@ def app():
 
     st.title('Forecast with Confidence: Elevate Your Oil Production')
     # st.subheader('From Q3 1991 to Q1 2023')
-    st.markdown("Data Source can be found [here](https://www.econdb.com/main-indicators?country=US&freq=M&tab=country-profile)")
+    #st.markdown("Data Source can be found [here](https://www.econdb.com/main-indicators?country=US&freq=M&tab=country-profile)")
 
     # st.subheader('This is the source file that we downloaded from the above mentioned link')
 
