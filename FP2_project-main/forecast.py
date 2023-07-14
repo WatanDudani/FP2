@@ -185,15 +185,17 @@ def forecast():
             st.table(forecast_table)
            
         else :
-            holt_winters_model = ExponentialSmoothing(train_data[target_variable], trend='add', seasonal='add', seasonal_periods=12)
-            holt_winters_results = holt_winters_model.fit()
+            order = (0, 2, 1)
+            seasonal_order = (1, 0, 1, 12) 
+            sarima_model = sm.tsa.SARIMAX(train_data[target_variable], order=order, seasonal_order=seasonal_order)
+            sarima_results = sarima_model.fit()
+            sarima_predictions = sarima_results.predict(start=test_data.index[0], end=test_data.index[-1])
+            sarima_mape = np.mean(np.abs((sarima_predictions - test_data[target_variable]) / test_data[target_variable])) * 100
             start_date = pd.to_datetime('2023-04-01')
             end_date = start_date + pd.DateOffset(months=horizon)
-            holt_winters_predictions = holt_winters_results.predict(start=test_data.index[0], end=test_data.index[-1])
-            holt_winters_mape = np.mean(np.abs((holt_winters_predictions - test_data[target_variable]) / test_data[target_variable]))* 100
-            predictions_for_horizon_hw = holt_winters_results.predict(start=start_date, end=end_date)
+            predictions_for_horizon_hw = sarima_results.predict(start=start_date, end=end_date)
             
-            st.subheader('MAPE of Long term forecasting: ' + str(round(holt_winters_mape, 3)))
+            st.subheader('MAPE of Long term forecasting: ' + str(round(sarima_mape, 3)))
 
             # # Plotting the time series chart for long term forecasting
             # fig, ax = plt.subplots(figsize=(10, 6))
