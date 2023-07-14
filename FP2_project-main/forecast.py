@@ -24,7 +24,7 @@ def forecast():
 
     @st.cache_data
     def read_data_oil():
-        URL = "https://raw.githubusercontent.com/Royce281993/FP2_project/main/Source_data_oil_file/export.csv"
+        URL = "https://raw.githubusercontent.com/WatanDudani/FP2/main/FP2_project-main/Source_data_oil_file/export.csv"
         df_oil = pd.read_csv(URL, index_col=0)
         df_oil = df_oil.reset_index()
         df_oil_T = df_oil.set_index('indicator').T
