@@ -62,7 +62,7 @@ def app():
 
     @st.cache_data
     def read_raw ():
-        URL = "https://raw.githubusercontent.com/Royce281993/FP2_project/main/Source_data_oil_file/export.csv"
+        URL = "hhttps://raw.githubusercontent.com/WatanDudani/FP2/main/FP2_project-main/Source_data_oil_file/export.csv"
         df_oil_raw = pd.read_csv(URL, index_col=0)
         return df_oil_raw
 
